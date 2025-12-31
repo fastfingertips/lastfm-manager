@@ -47,13 +47,13 @@
             <button class="tab-btn active" data-tab="scrobbles">
                 <span>Scrobble Panel</span>
             </button>
-            <button class="tab-btn" data-tab="system">
-                <span>System</span>
-            </button>
             <button class="tab-btn" data-tab="hotkeys" style="position: relative;">
                 <span>Hotkeys</span>
                 <span
                     style="position: absolute; top: 4px; right: 4px; background: #ffa500; color: #000; font-size: 7px; font-weight: 900; padding: 1px 3px; border-radius: 2px; line-height: 1; text-transform: uppercase;">Draft</span>
+            </button>
+            <button class="tab-btn" data-tab="system">
+                <span>System</span>
             </button>
             <button class="tab-btn" data-tab="about">
                 <span>About</span>
@@ -212,6 +212,52 @@
             </div>
         </div>
 
+        <!-- Tab Content: Hotkeys -->
+        <div id="tab-hotkeys" class="tab-content">
+            <div class="settings-panel">
+                <div class="section-title">KEYBOARD SHORTCUTS</div>
+
+                <!-- Development Notice -->
+                <div class="info-banner"
+                    style="margin-bottom: 20px; background: rgba(255, 165, 0, 0.1); border-left: 3px solid #ffa500; padding: 12px;">
+                    <div class="info-banner-icon" style="color: #ffa500; padding-top: 2px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="info-banner-text" style="color: #ccc; font-size: 11px;">
+                        <strong
+                            style="color: #ffa500; text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Under
+                            Development</strong>
+                        This feature is currently in draft. Shortcuts are not yet functional and <strong></strong>will
+                        be disabled by default</strong> when released for your security.
+                    </div>
+                </div>
+
+                <div class="option-row" style="opacity: 0.6; pointer-events: none;">
+                    <label for="opt-hotkeysEnabled">
+                        <strong>Enable Hotkeys</strong>
+                        <div class="text-sub">Control scrobble management with your keyboard</div>
+                    </label>
+                    <label class="switch">
+                        <input type="checkbox" id="opt-hotkeysEnabled" disabled>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="empty-state"
+                    style="padding: 20px; text-align: center; border: 1px dashed var(--lfm-border); border-radius: 4px; margin-top: 20px;">
+                    <div style="color: var(--lfm-text-secondary); font-size: 11px; line-height: 1.6;">
+                        Shortcut assignments and behavior definitions will be finalized during the development phase.
+                        Check back soon for updates!
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Tab Content: System -->
         <div id="tab-system" class="tab-content">
             <div class="settings-panel">
@@ -259,52 +305,6 @@
                         <input type="checkbox" id="opt-debugMode">
                         <span class="slider"></span>
                     </label>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab Content: Hotkeys -->
-        <div id="tab-hotkeys" class="tab-content">
-            <div class="settings-panel">
-                <div class="section-title">KEYBOARD SHORTCUTS</div>
-
-                <!-- Development Notice -->
-                <div class="info-banner"
-                    style="margin-bottom: 20px; background: rgba(255, 165, 0, 0.1); border-left: 3px solid #ffa500; padding: 12px;">
-                    <div class="info-banner-icon" style="color: #ffa500; padding-top: 2px;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path
-                                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="info-banner-text" style="color: #ccc; font-size: 11px;">
-                        <strong
-                            style="color: #ffa500; text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Under
-                            Development</strong>
-                        This feature is currently in draft. Shortcuts are not yet functional and <strong></strong>will
-                        be disabled by default</strong> when released for your security.
-                    </div>
-                </div>
-
-                <div class="option-row" style="opacity: 0.6; pointer-events: none;">
-                    <label for="opt-hotkeysEnabled">
-                        <strong>Enable Hotkeys</strong>
-                        <div class="text-sub">Control scrobble management with your keyboard</div>
-                    </label>
-                    <label class="switch">
-                        <input type="checkbox" id="opt-hotkeysEnabled" disabled>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="empty-state"
-                    style="padding: 20px; text-align: center; border: 1px dashed var(--lfm-border); border-radius: 4px; margin-top: 20px;">
-                    <div style="color: var(--lfm-text-secondary); font-size: 11px; line-height: 1.6;">
-                        Shortcut assignments and behavior definitions will be finalized during the development phase.
-                        Check back soon for updates!
-                    </div>
                 </div>
             </div>
         </div>
