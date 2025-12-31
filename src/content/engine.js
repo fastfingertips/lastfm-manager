@@ -96,17 +96,46 @@ function extractTrackInfo(row, options = {}) {
 
 const LfmEngine = {
     /**
-     * Extracts artist and track info from URL if not present in row
+     * Extracts artist, track, and user info from URL
      */
     getUrlContext() {
         const path = globalThis.location.pathname;
         const artistMatch = /\/library\/music\/([^/]+)/.exec(path);
         const trackMatch = /\/library\/music\/[^/]+\/_\/([^/?]+)/.exec(path);
+        const userMatch = /\/user\/([^/]+)/.exec(path);
 
         return {
             artist: artistMatch ? decodeURIComponent(artistMatch[1].replaceAll('+', ' ')) : null,
-            track: trackMatch ? decodeURIComponent(trackMatch[1].replaceAll('+', ' ')) : null
+            track: trackMatch ? decodeURIComponent(trackMatch[1].replaceAll('+', ' ')) : null,
+            user: userMatch ? userMatch[1] : null
         };
+    },
+
+    /**
+     * Determines if the viewed library belongs to the logged-in user
+     * @returns {boolean}
+     */
+    isMyLibrary() {
+        const context = this.getUrlContext();
+        if (!context.user) return false;
+
+        // Try to find the logged-in username from the nav
+        const userLink = document.querySelector('.nav-user-link') ||
+            document.querySelector('a[href^="/user/"] .nav-avatar');
+
+        let loggedInUser = null;
+        if (userLink) {
+            const href = userLink.getAttribute('href') || '';
+            const match = /\/user\/([^/]+)/.exec(href);
+            if (match) loggedInUser = match[1];
+        }
+
+        // If we can't find the logged-in user, we assume it's NOT ours if we don't see delete forms
+        if (!loggedInUser) {
+            return document.querySelector('form[action$="/delete"]') !== null;
+        }
+
+        return context.user.toLowerCase() === loggedInUser.toLowerCase();
     },
 
     /**

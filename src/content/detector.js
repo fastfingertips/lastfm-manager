@@ -127,11 +127,15 @@ const LfmManager = {
         this.state.duplicateCount = stats.duplicates;
 
         // 3. Inject UI if applicable
-        const hasDeletableContent = document.querySelector('form[action$="/delete"]') !== null;
-        if (hasDeletableContent) {
+        const isMyLib = LfmEngine.isMyLibrary();
+        if (isMyLib) {
             this.injectUI(stats.duplicates);
         } else {
-            this.log('No deletable content found. Skipping UI injection.');
+            this.log('Not your library. Removing Action Bar if present.');
+            const actionBar = document.getElementById('lfm-action-bar');
+            if (actionBar) actionBar.remove();
+            const metaEdit = document.getElementById('lfm-meta-edit-item');
+            if (metaEdit) metaEdit.remove();
         }
 
         // Apply visual preferences based on settings
@@ -234,7 +238,8 @@ const LfmManager = {
         return {
             originals: document.querySelectorAll('tr.chartlist-row:not(.lfm-row-duplicate)').length,
             duplicates: this.state.duplicateCount,
-            selectedCount: this.getSelectedCount()
+            selectedCount: this.getSelectedCount(),
+            isMyLibrary: LfmEngine.isMyLibrary()
         };
     }
 };

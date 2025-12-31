@@ -80,6 +80,23 @@
                 </div>
 
                 <div class="module-content">
+                    <!-- Read-only notice for other users' libraries -->
+                    <div id="read-only-banner" class="info-banner"
+                        style="display: none; margin: 0 15px 15px 15px; background: rgba(255,165,0,0.1); border-left: 3px solid orange; padding: 10px; border-radius: 4px;">
+                        <div class="info-banner-icon" style="color: orange; padding-top: 5px;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div class="info-banner-text" style="color: var(--lfm-text); font-size: 11px;">
+                            <strong>Read-Only Mode:</strong> You are viewing another user's library. Deletion is
+                            disabled.
+                        </div>
+                    </div>
+
                     <div class="settings-panel">
                         <div class="action-row" style="justify-content: flex-end;">
                             <div class="info-trigger-wrapper">

@@ -35,11 +35,18 @@ const UIManager = {
             if (tabs[0]) {
                 chrome.tabs.sendMessage(tabs[0].id, { action: 'getStats' }, (response) => {
                     const moduleContainer = document.getElementById('scrobble-module-container');
+                    const readOnlyBanner = document.getElementById('read-only-banner');
                     const isActive = !!(response && response.success);
 
                     if (moduleContainer) {
                         moduleContainer.classList.toggle('is-inactive', !isActive);
                     }
+
+                    if (readOnlyBanner) {
+                        // Show read-only banner if it's active but NOT my library
+                        readOnlyBanner.style.display = (isActive && response.isMyLibrary === false) ? 'flex' : 'none';
+                    }
+
                     if (callback) callback(response);
                 });
             }
