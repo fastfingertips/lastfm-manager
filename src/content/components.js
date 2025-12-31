@@ -210,23 +210,44 @@ const LfmComponents = {
     /**
      * Injects Quick Navigation buttons (Next/Back Day)
      */
-    injectNavigation(detector) {
+    injectNavigation(detector, retryCount = 0) {
         // 1. Find a stable parent container
         const controls = document.querySelector('.library-controls') ||
             document.querySelector('.library-header') ||
             document.querySelector('.content-top .container');
 
-        if (!controls) return;
+        if (!controls) {
+            // If we are on a library page but controls aren't here yet, wait a bit
+            if (retryCount < 10 && LfmEngine.isLibraryPage()) {
+                setTimeout(() => this.injectNavigation(detector, retryCount + 1), 500);
+            }
+            return;
+        }
 
-        // 2. Clear out any broken/old navigation instances
+        // 2. Identify if date picker is present (might be late)
+        const datePicker = controls.querySelector('.library-date-picker, .library-controls-datepicker');
+
+        // If date picker is missing but it's a library page, it might be loading.
+        // We'll proceed with fallback but keep trying to find the date picker for better placement.
+        if (!datePicker && retryCount < 10 && LfmEngine.isLibraryPage()) {
+            setTimeout(() => this.injectNavigation(detector, retryCount + 1), 1000);
+        }
+
+        // 3. Check existing and visibility
         const existing = document.getElementById('lfm-quick-nav');
         if (existing) {
-            // If it's already there and seems healthy, leave it
-            if (existing.parentElement && existing.offsetParent !== null) return;
+            // Check if it's actually visible and attached correctly
+            if (existing.parentElement && existing.offsetParent !== null) {
+                // If it exists but we just found the date picker, move it!
+                if (datePicker && existing.nextElementSibling !== datePicker) {
+                    datePicker.before(existing);
+                }
+                return;
+            }
             existing.remove();
         }
 
-        // 3. Create the navigation container
+        // 4. Create the navigation container
         const nav = document.createElement('div');
         nav.id = 'lfm-quick-nav';
         nav.className = 'lfm-quick-nav integrated';
@@ -243,20 +264,17 @@ const LfmComponents = {
             return btn;
         };
 
-        const prevBtn = createNavBtn('prev', 'prev', 'Previous Day (Left Arrow)');
-        const nextBtn = createNavBtn('next', 'next', 'Next Day (Right Arrow)');
+        nav.appendChild(createNavBtn('prev', 'prev', 'Previous Day (Left Arrow)'));
+        nav.appendChild(createNavBtn('next', 'next', 'Next Day (Right Arrow)'));
 
-        nav.appendChild(prevBtn);
-        nav.appendChild(nextBtn);
-
-        // 4. Smart placement near date picker or fallback to start of controls
-        const datePicker = controls.querySelector('.library-date-picker, .library-controls-datepicker');
+        // 5. Smart placement
         if (datePicker) {
-            // Put it right before the date picker for maximum proximity
             datePicker.before(nav);
         } else {
-            // Fallback: put at the beginning of the controls
-            controls.prepend(nav);
+            // Fallback: after the navlist or at start
+            const anchor = controls.querySelector('.navlist, .secondary-nav');
+            if (anchor) anchor.after(nav);
+            else controls.prepend(nav);
         }
     },
 

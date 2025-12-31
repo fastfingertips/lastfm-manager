@@ -38,7 +38,10 @@ const PageObserver = {
                                 node.querySelector('.library-controls') ||
                                 node.matches('.library-header') ||
                                 node.querySelector('.library-header') ||
-                                node.matches('.content-top')
+                                node.matches('.content-top') ||
+                                node.matches('.library-date-picker') ||
+                                node.querySelector('.library-date-picker') ||
+                                node.matches('.date-range-picker-button')
                             )) {
                                 shouldRescan = true;
                             }

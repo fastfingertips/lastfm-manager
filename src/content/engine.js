@@ -139,6 +139,14 @@ const LfmEngine = {
     },
 
     /**
+     * Determines if current page is any kind of library page
+     * @returns {boolean}
+     */
+    isLibraryPage() {
+        return window.location.pathname.includes('/library');
+    },
+
+    /**
      * Extracts Unix timestamp from a chartlist row
      * @deprecated Use global extractTimestamp() instead
      */
