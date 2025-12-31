@@ -10,28 +10,34 @@ const LfmNavigator = {
     stepDay(directionalStep) {
         const url = new URL(globalThis.location.href);
         const fromDateStr = url.searchParams.get('from');
-        const context = LfmEngine.getUrlContext();
-
-        if (!context.user) return;
 
         let baseDate;
         if (fromDateStr) {
-            baseDate = new Date(fromDateStr);
+            // Split YYYY-MM-DD to avoid timezone shifts
+            const parts = fromDateStr.split('-');
+            baseDate = new Date(parts[0], parts[1] - 1, parts[2]);
         } else {
-            // If no date in URL, assume today
             baseDate = new Date();
         }
 
-        // Add/Subtract 1 day (86400000 ms)
-        const targetDate = new Date(baseDate.getTime() + (directionalStep * 86400000));
-        const targetDateStr = targetDate.toISOString().split('T')[0];
+        if (isNaN(baseDate.getTime())) baseDate = new Date();
 
-        // Construct target URL
-        // Format: /user/[USER]/library/tracks?from=[DATE]&rangetype=1day
-        const targetUrl = `/user/${context.user}/library/tracks?from=${targetDateStr}&rangetype=1day`;
+        // Add/Subtract days
+        const targetDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() + directionalStep);
+
+        // Format to YYYY-MM-DD
+        const y = targetDate.getFullYear();
+        const m = String(targetDate.getMonth() + 1).padStart(2, '0');
+        const d = String(targetDate.getDate()).padStart(2, '0');
+        const targetDateStr = `${y}-${m}-${d}`;
+
+        // Update search params without losing rest of the URL structure
+        url.searchParams.set('from', targetDateStr);
+        url.searchParams.set('to', targetDateStr);
+        url.searchParams.set('rangetype', '1day');
 
         // Navigate
-        globalThis.location.href = targetUrl;
+        globalThis.location.href = url.toString();
     },
 
     initHotkeys() {
