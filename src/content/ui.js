@@ -222,7 +222,7 @@ const LfmUI = {
             `,
             footerContent: `
                 <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <div class="text-sub">v1.0.0 • <a href="https://github.com/fastfingertips/lastfm-manager" target="_blank" class="lfm-info-link">GitHub</a></div>
+                    <div class="text-sub">v1.0.1 • <a href="https://github.com/fastfingertips/lastfm-manager" target="_blank" class="lfm-info-link">GitHub</a></div>
                     <div class="lfm-modal-actions">
                         <button class="lfm-btn lfm-btn-secondary lfm-btn-close">Close</button>
                     </div>

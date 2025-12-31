@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.1] - 2025-12-31
+
+### Changed
+- Refactored permissions for better security and privacy.
+- Cleaned up codebase for initial Web Store submission.
+
 ## [1.0.0] - 2025-12-31
 
 ### Added
