@@ -1,0 +1,16 @@
+/* Popup Dark Theme Override */
+/* Overrides shared variables for the popup's dark aesthetic */
+
+:root {
+    /* Dark Theme Neutrals (popup only) */
+    --lfm-bg: #111;
+    --lfm-bg-alt: #1a1a1a;
+    --lfm-bg-hover: #222;
+    --lfm-border: #333;
+    --lfm-border-light: #444;
+    --lfm-text: #fff;
+    --lfm-text-secondary: #999;
+
+    /* Shadows adjusted for dark theme */
+    --lfm-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}

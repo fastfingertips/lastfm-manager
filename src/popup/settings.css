@@ -1,0 +1,71 @@
+/* Settings Panels & Options */
+.settings-panel {
+    padding: 15px;
+}
+
+.section-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--lfm-text-secondary);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    margin-top: 15px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+.section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--lfm-border);
+    margin-left: 10px;
+}
+
+.section-title:first-child {
+    margin-top: 0;
+}
+
+.option-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 10px 12px;
+    background: var(--lfm-bg-alt);
+    border: 1px solid var(--lfm-border);
+    transition: background 0.2s;
+}
+
+.option-row:hover {
+    background: #222;
+}
+
+.option-row label strong {
+    display: block;
+    font-size: 13px;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.option-row--stacked {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/* Layout for specific areas */
+.action-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    height: 40px;
+}
+
+.tolerance-controls {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}

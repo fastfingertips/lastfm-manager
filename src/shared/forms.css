@@ -1,0 +1,74 @@
+/* Shared Form Elements */
+
+/* Select Input */
+.select-input {
+    background: var(--lfm-bg);
+    border: 1px solid var(--lfm-border-light);
+    color: var(--lfm-text);
+    padding: 6px 8px;
+    font-size: 12px;
+    width: 100%;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: var(--lfm-radius);
+    transition: border-color var(--lfm-transition);
+}
+
+.select-input:hover {
+    border-color: var(--lfm-text-secondary);
+}
+
+.select-input:focus {
+    outline: none;
+    border-color: var(--lfm-red);
+}
+
+/* Number Input */
+.number-input {
+    background: var(--lfm-bg);
+    border: 1px solid var(--lfm-border-light);
+    color: var(--lfm-text);
+    padding: 6px;
+    width: 60px;
+    font-family: inherit;
+    border-radius: var(--lfm-radius);
+}
+
+.number-input:focus {
+    outline: none;
+    border-color: var(--lfm-red);
+}
+
+/* Text Input */
+.text-input,
+.lfm-modal-input {
+    background: var(--lfm-bg);
+    border: 1px solid var(--lfm-border);
+    color: var(--lfm-text);
+    padding: 10px 12px;
+    font-size: 13px;
+    width: 100%;
+    font-family: inherit;
+    border-radius: var(--lfm-radius);
+    transition: border-color var(--lfm-transition);
+}
+
+.text-input:focus,
+.lfm-modal-input:focus {
+    outline: none;
+    border-color: var(--lfm-red);
+}
+
+/* Custom Input Group */
+.custom-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Tolerance Controls Layout */
+.tolerance-controls {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}

@@ -1,0 +1,55 @@
+{
+    "manifest_version": 3,
+    "name": "Last.fm Manager",
+    "version": "1.0.0",
+    "description": "Premium library management tools for Last.fm - Duplicate detection, metadata inspection, and more.",
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "*://*.last.fm/*"
+    ],
+    "action": {
+        "default_popup": "src/popup/popup.html",
+        "default_title": "Last.fm Manager"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.last.fm/user/*/library*",
+                "*://*.last.fm/*/user/*/library*"
+            ],
+            "js": [
+                "src/shared/config.js",
+                "src/content/icons.js",
+                "src/content/ui.js",
+                "src/content/engine.js",
+                "src/content/actions.js",
+                "src/content/scrobble-info.js",
+                "src/content/components.js",
+                "src/content/detector.js",
+                "src/content/observer.js",
+                "src/content/main.js"
+            ],
+            "css": [
+                "src/shared/variables.css",
+                "src/shared/buttons.css",
+                "src/shared/switches.css",
+                "src/shared/forms.css",
+                "src/content/styles/animations.css",
+                "src/content/styles/badges.css",
+                "src/content/styles/checkbox.css",
+                "src/content/styles/metadata.css",
+                "src/content/styles/action-bar.css",
+                "src/content/styles/toast.css",
+                "src/content/styles/empty-state.css",
+                "src/content/styles/loading.css",
+                "src/content/styles/modal.css",
+                "src/content/styles/icons.css",
+                "src/content/styles/header-cta.css"
+            ],
+            "run_at": "document_end"
+        }
+    ]
+}

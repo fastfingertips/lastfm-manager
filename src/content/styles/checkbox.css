@@ -1,0 +1,35 @@
+/* Last.fm Duplicate Detector - Checkbox System */
+
+.lfm-checkbox-cell {
+    width: 24px;
+    padding-right: 8px !important;
+    vertical-align: middle;
+    display: none !important;
+}
+
+body.lfm-edit-mode .lfm-checkbox-cell {
+    display: table-cell !important;
+    animation: fadeIn var(--lfm-transition) ease-out;
+}
+
+.lfm-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    vertical-align: middle;
+    accent-color: var(--lfm-red);
+}
+
+/* Row Highlighting */
+.lfm-row-duplicate {
+    background-color: var(--lfm-red-light) !important;
+}
+
+.lfm-row-duplicate td {
+    opacity: 0.7;
+    transition: opacity var(--lfm-transition);
+}
+
+.lfm-row-duplicate:hover td {
+    opacity: 1;
+}

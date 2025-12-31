@@ -1,0 +1,100 @@
+/* Last.fm Duplicate Detector - Action Bar */
+/* Responsive action bar that adapts to available space */
+
+.lfm-action-bar {
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: var(--lfm-bg-alt);
+    border-radius: var(--lfm-radius);
+    border: 1px solid var(--lfm-border-light);
+}
+
+body.lfm-edit-mode .lfm-action-bar {
+    display: flex;
+    animation: slideDown var(--lfm-transition) ease-out;
+}
+
+/* Selection counter */
+.lfm-action-bar-count {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--lfm-text-secondary);
+    white-space: nowrap;
+    margin-right: auto;
+    min-width: 80px;
+}
+
+/* Compact buttons in action bar */
+.lfm-action-bar .lfm-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+    gap: 4px;
+}
+
+.lfm-action-bar .lfm-btn-group {
+    margin-right: 4px;
+}
+
+.lfm-action-bar .lfm-btn-group .lfm-btn {
+    padding: 4px 8px;
+}
+
+/* Hide button text on smaller screens, show only icons */
+.lfm-action-bar .lfm-btn-text {
+    display: inline;
+}
+
+/* Icon sizing in action bar */
+.lfm-action-bar .lfm-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.lfm-action-bar .lfm-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Delete button stands out */
+.lfm-action-bar .lfm-btn-danger {
+    margin-left: auto;
+}
+
+/* Cancel button - icon only */
+.lfm-action-bar #lfm-btn-cancel {
+    padding: 4px 6px;
+    margin-left: 4px;
+}
+
+/* Responsive: Stack on very small screens */
+@media (max-width: 600px) {
+    .lfm-action-bar {
+        gap: 6px;
+        padding: 8px 10px;
+    }
+
+    .lfm-action-bar .lfm-btn {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+
+    /* Hide text labels on mobile, show only icons */
+    .lfm-action-bar .lfm-btn-text {
+        display: none;
+    }
+
+    .lfm-action-bar .lfm-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .lfm-action-bar-count {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 4px;
+    }
+}

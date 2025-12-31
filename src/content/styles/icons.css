@@ -1,0 +1,97 @@
+/* Last.fm Duplicate Detector - Icon Styles */
+
+.lfm-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.lfm-icon svg,
+.lfm-icon-use {
+    width: 100%;
+    height: 100%;
+    fill: none !important;
+    /* Force no fill for outlined icons */
+    stroke: currentColor;
+    stroke-width: 1.75;
+    /* Slightly thinner for a cleaner look */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.lfm-icon-use {
+    display: inline-block;
+}
+
+/* Icons that should be FILLED (Solid icons) */
+.lfm-icon-spotify .lfm-icon-use,
+.lfm-icon-youtube .lfm-icon-use,
+.lfm-icon-apple .lfm-icon-use,
+.lfm-icon-amazon .lfm-icon-use,
+.lfm-status-loved .lfm-icon-use,
+.lfm-icon-heart .lfm-icon-use {
+    fill: currentColor !important;
+    stroke: none !important;
+}
+
+/* Icon sizes */
+.lfm-icon--xs {
+    width: 12px;
+    height: 12px;
+}
+
+.lfm-icon--sm {
+    width: 16px;
+    height: 16px;
+}
+
+.lfm-icon--md {
+    width: 20px;
+    height: 20px;
+}
+
+.lfm-icon--lg {
+    width: 24px;
+    height: 24px;
+}
+
+.lfm-icon--xl {
+    width: 32px;
+    height: 32px;
+}
+
+/* Icon colors */
+.lfm-icon--muted {
+    color: var(--lfm-text-secondary);
+}
+
+.lfm-icon--danger {
+    color: var(--lfm-red);
+}
+
+.lfm-icon--success {
+    color: #096;
+}
+
+.lfm-icon--warning {
+    color: #f60;
+}
+
+.lfm-icon--info {
+    color: var(--lfm-blue);
+}
+
+/* Icon in button */
+.lfm-btn .lfm-icon {
+    margin-right: 6px;
+}
+
+.lfm-btn .lfm-icon:last-child {
+    margin-right: 0;
+    margin-left: 6px;
+}
+
+.lfm-btn .lfm-icon:only-child {
+    margin: 0;
+}

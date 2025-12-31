@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last.fm Manager</title>
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../shared/variables.css">
+    <link rel="stylesheet" href="theme-dark.css">
+    <link rel="stylesheet" href="../shared/buttons.css">
+    <link rel="stylesheet" href="../shared/switches.css">
+    <link rel="stylesheet" href="../shared/forms.css">
+
+    <!-- Popup Styles -->
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="navigation.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="modules.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-area">
+                <h1>Last.fm Manager</h1>
+                <span class="version">v1.0.0</span>
+            </div>
+            <div class="header-actions">
+                <label class="switch power-switch" title="Global Toggle">
+                    <input type="checkbox" id="opt-enabled" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="scrobbles">
+                <span>Scrobble Panel</span>
+            </button>
+            <button class="tab-btn" data-tab="system">
+                <span>System</span>
+            </button>
+            <button class="tab-btn" data-tab="about">
+                <span>About</span>
+            </button>
+        </div>
+
+        <!-- Tab Content: Scrobble Panel Settings -->
+        <div id="tab-scrobbles" class="tab-content active">
+            <div id="scrobble-module-container" class="module-container">
+                <div class="module-overlay">
+                    <div class="info-banner"
+                        style="background: rgba(0,0,0,0.8); border: 1px solid var(--lfm-border); border-left: 4px solid var(--lfm-red); backdrop-filter: blur(8px); margin: 0 20px; text-align: left;">
+                        <div class="info-banner-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div class="info-banner-text">
+                            <strong style="color: #fff; display: block; margin-bottom: 4px; font-size: 13px;">Module
+                                Inactive</strong>
+                            Available only on Library and History pages.
+                            <a href="https://www.last.fm/user/_/library" target="_blank" class="lfm-btn-full"
+                                style="display: block; text-decoration: none; text-align: center; margin-top: 10px; padding: 6px; font-size: 11px;">Go
+                                to Library</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-content">
+                    <div class="settings-panel">
+                        <div class="action-row" style="justify-content: flex-end;">
+                            <div class="info-trigger-wrapper">
+                                <div class="btn-icon-tiny info-trigger">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                    </svg>
+                                </div>
+                                <div class="info-hover-card" style="top: 45px;">
+                                    <div class="info-banner"
+                                        style="margin: 0; border-radius: 4px; background: #000; border: 1px solid var(--lfm-border); border-left: 2px solid var(--lfm-red);">
+                                        <div class="info-banner-text">
+                                            <strong>Duplicate Detection:</strong> Only scrobbles currently loaded in
+                                            your browser view are analyzed.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-title">DETECTION ENGINE</div>
+
+                        <div class="option-row">
+                            <label for="opt-fuzzyMatch">
+                                <strong>Fuzzy Matching</strong>
+                                <div class="text-sub">Ignore title tags like (Remastered)</div>
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" id="opt-fuzzyMatch">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="option-row option-row--stacked">
+                            <label for="opt-time-tolerance">
+                                <strong>Time Tolerance</strong>
+                                <div class="text-sub">Max window for duplicate scrobbles</div>
+                            </label>
+                            <div class="tolerance-controls">
+                                <select id="opt-time-tolerance" class="select-input">
+                                    <option value="60">1 minute</option>
+                                    <option value="300">5 minutes</option>
+                                    <option value="1800">30 minutes</option>
+                                    <option value="3600">1 hour</option>
+                                    <option value="86400">1 day (default)</option>
+                                    <option value="custom">Custom...</option>
+                                </select>
+                                <div id="custom-tolerance-group" class="custom-input-group" style="display: none;">
+                                    <input type="number" id="opt-time-tolerance-custom" class="number-input" min="1"
+                                        max="604800" placeholder="sec">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-title">VISUAL PREFERENCES</div>
+
+                        <div class="option-row">
+                            <label for="opt-colorize">
+                                <strong>Highlight Rows</strong>
+                                <div class="text-sub">Colorize duplicate scrobbles in list</div>
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" id="opt-colorize">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="option-row option-row--stacked">
+                            <label for="opt-badgeMode">
+                                <strong>Badge Style</strong>
+                                <div class="text-sub">How scrobble tags are displayed</div>
+                            </label>
+                            <select id="opt-badgeMode" class="select-input">
+                                <option value="both">Icon + Text</option>
+                                <option value="icon_only">Icon Only</option>
+                                <option value="none">Disabled</option>
+                            </select>
+                        </div>
+
+                        <div class="option-row">
+                            <label for="opt-autoSelect">
+                                <strong>Auto-Select</strong>
+                                <div class="text-sub">Automatically check found duplicates</div>
+                            </label>
+                            <label class="switch">
+                                <input type="checkbox" id="opt-autoSelect">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="section-title">SYSTEM & SAFETY</div>
+
+                        <div class="option-row option-row--stacked">
+                            <label for="opt-confirmDelete">
+                                <strong>Delete Safety Level</strong>
+                                <div class="text-sub">Verification required before mass removal</div>
+                            </label>
+                            <select id="opt-confirmDelete" class="select-input">
+                                <option value="none">None (Fastly delete)</option>
+                                <option value="simple">Simple Confirmation</option>
+                                <option value="text">Input "DELETE" word</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: System -->
+        <div id="tab-system" class="tab-content">
+            <div class="settings-panel">
+                <div class="section-title">CONFIGURATION PORTABILITY</div>
+                <div class="option-row">
+                    <label>
+                        <strong>Export Settings</strong>
+                        <div class="text-sub">Save your preferences to a JSON file</div>
+                    </label>
+                    <button id="btn-export-settings" class="btn-icon-tiny" title="Export"
+                        style="border: 1px solid var(--lfm-border); padding: 5px 10px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="option-row">
+                    <label>
+                        <strong>Import Settings</strong>
+                        <div class="text-sub">Load preferences from a JSON file</div>
+                    </label>
+                    <button id="btn-import-settings" class="btn-icon-tiny" title="Import"
+                        style="border: 1px solid var(--lfm-border); padding: 5px 10px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 15v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </button>
+                    <input type="file" id="file-import-settings" accept=".json" style="display: none;">
+                </div>
+
+                <div class="section-title">DIAGNOSTICS</div>
+                <div class="option-row">
+                    <label>
+                        <strong>Diagnostic Logs</strong>
+                        <div class="text-sub">Enable detailed console logs for debugging</div>
+                    </label>
+                    <label class="switch">
+                        <input type="checkbox" id="opt-debugMode">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: About -->
+        <div id="tab-about" class="tab-content">
+            <div class="settings-panel">
+                <div class="section-title">LAST.FM MANAGER</div>
+                <div
+                    style="padding: 15px; background: var(--lfm-bg-alt); border: 1px solid var(--lfm-border); border-radius: 4px;">
+                    <p style="margin-top: 0; font-size: 13px; line-height: 1.5;">
+                        A comprehensive toolkit for managing your Last.fm library, focusing on duplicate detection and
+                        scrobble cleanup.
+                    </p>
+                    <div class="text-sub" style="margin-top: 15px;">
+                        <strong>Version:</strong> 1.0.0<br>
+                        <strong>Author:</strong> <a href="https://github.com/fastfingertips" target="_blank"
+                            style="color: var(--lfm-text-secondary); text-decoration: underline;">fastfingertips</a><br>
+                        <strong>License:</strong> MIT
+                    </div>
+                </div>
+
+                <div class="section-title">LINKS</div>
+                <div class="option-row">
+                    <a href="https://github.com/fastfingertips/lastfm-manager" target="_blank"
+                        style="color: #fff; text-decoration: none; font-size: 13px; font-weight: 700;">GitHub
+                        Repository</a>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.7;">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+                <div class="option-row">
+                    <a href="https://github.com/fastfingertips/lastfm-manager#readme" target="_blank"
+                        style="color: #fff; text-decoration: none; font-size: 13px; font-weight: 700;">Official
+                        Documentation</a>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.7;">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="https://github.com/fastfingertips/lastfm-manager" target="_blank" class="footer-link">GitHub</a>
+            <span>•</span>
+            <a href="https://github.com/fastfingertips/lastfm-manager/issues" target="_blank"
+                class="footer-link">Support</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../shared/config.js"></script>
+    <script src="settings-manager.js"></script>
+    <script src="ui-manager.js"></script>
+    <script src="popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+/* Last.fm Duplicate Detector - Metadata Integration */
+
+.lfm-meta-item {
+    cursor: default;
+    transition: opacity var(--lfm-transition);
+    position: relative;
+    padding: 0 15px;
+    border-right: 1px solid var(--lfm-border-light);
+}
+
+.lfm-meta-item:last-child {
+    border-right: none;
+}
+
+.lfm-meta-title {
+    color: var(--lfm-text-secondary);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.lfm-meta-value {
+    color: var(--lfm-text);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lfm-meta-value--red .lfm-meta-count {
+    color: var(--lfm-red);
+}
+
+/* Duplicate count display */
+.lfm-meta-count {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Edit button - integrated into metadata */
+.lfm-edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 4px;
+    border: 1px solid var(--lfm-border-light);
+    border-radius: 50%;
+    /* Circular for modern look */
+    background: var(--lfm-bg-alt);
+    color: var(--lfm-text-secondary);
+    cursor: pointer;
+    transition: all var(--lfm-transition-fast);
+    margin-left: 10px;
+    outline: none;
+}
+
+.lfm-edit-btn svg {
+    width: 12px;
+    height: 12px;
+    stroke-width: 2.5px;
+}
+
+.lfm-edit-btn:hover {
+    background: var(--lfm-red);
+    border-color: var(--lfm-red);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(217, 35, 35, 0.2);
+}
+
+.lfm-edit-btn:active {
+    transform: translateY(0);
+}
+
+/* When in edit mode, show button as active */
+body.lfm-edit-mode .lfm-edit-btn {
+    background: var(--lfm-red);
+    border-color: var(--lfm-red);
+    color: white;
+}
+
+/* Legacy manage icon (if still used) */
+.lfm-manage-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: var(--lfm-text-secondary);
+    transition: color var(--lfm-transition);
+}
+
+.lfm-manage-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.lfm-meta-item:hover .lfm-manage-icon {
+    color: var(--lfm-text);
+}
+
+/* Edit button wrapper - positioned at far right of metadata list */
+.lfm-meta-edit-wrapper {
+    margin-left: auto !important;
+    margin-right: 15px;
+    padding: 0 !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+/* Ensure metadata-list uses flexbox for auto-margin to work */
+.metadata-list {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Style the header CTA button when inside metadata list */
+.lfm-meta-edit-wrapper .lfm-header-cta {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--lfm-bg-alt, #282828);
+    border: 1px solid var(--lfm-border-light, #363636);
+}

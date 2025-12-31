@@ -1,0 +1,76 @@
+/* Last.fm Duplicate Detector - Header CTA Button */
+/* Matches Last.fm's native library-header-cta-item styling */
+
+.lfm-header-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-left: 8px;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--lfm-text-secondary);
+    transition: all var(--lfm-transition);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.lfm-header-cta:hover {
+    background: var(--lfm-bg-hover);
+    color: var(--lfm-red);
+}
+
+.lfm-header-cta:active {
+    transform: scale(0.95);
+}
+
+/* Icon inside button */
+.lfm-header-btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+}
+
+.lfm-header-btn-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Badge showing duplicate count */
+.lfm-header-btn-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--lfm-red);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 8px;
+    line-height: 1;
+}
+
+/* Active state when in edit mode */
+body.lfm-edit-mode .lfm-header-cta {
+    background: var(--lfm-red);
+    color: white;
+}
+
+body.lfm-edit-mode .lfm-header-cta:hover {
+    background: var(--lfm-red-dark);
+    color: white;
+}
+
+body.lfm-edit-mode .lfm-header-btn-badge {
+    background: white;
+    color: var(--lfm-red);
+}

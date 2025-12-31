@@ -1,0 +1,51 @@
+/* Last.fm Duplicate Detector - Empty State */
+/* Shown when no duplicates are found */
+
+.lfm-empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--lfm-text-secondary);
+}
+
+.lfm-empty-state-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    opacity: 0.5;
+}
+
+.lfm-empty-state-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+}
+
+.lfm-empty-state-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--lfm-text);
+    margin-bottom: 8px;
+}
+
+.lfm-empty-state-text {
+    font-size: 14px;
+    line-height: 21px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Success variant - all clean */
+.lfm-empty-state--success .lfm-empty-state-icon {
+    color: #096;
+    opacity: 1;
+}
+
+.lfm-empty-state--success .lfm-empty-state-title {
+    color: #096;
+}
+
+/* With action button */
+.lfm-empty-state-action {
+    margin-top: 18px;
+}

@@ -1,0 +1,39 @@
+/* Module Active/Inactive States */
+.module-container {
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+}
+
+.module-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.module-container.is-inactive .module-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.module-container.is-inactive .module-content {
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.module-content {
+    transition: filter 0.3s ease;
+}

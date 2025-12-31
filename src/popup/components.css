@@ -1,0 +1,52 @@
+/* Popup-Specific Components */
+/* Shared components imported from ../shared/styles/ */
+
+/* Tooltips & Info Cards (Popup Only) */
+.info-trigger-wrapper {
+    position: relative;
+}
+
+.info-hover-card {
+    position: absolute;
+    top: 25px;
+    right: 0;
+    width: 200px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    transition: all var(--lfm-transition);
+    pointer-events: none;
+}
+
+.info-trigger:hover+.info-hover-card {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.info-banner {
+    display: flex;
+    gap: 12px;
+    background: var(--lfm-bg);
+    padding: 12px 14px;
+    border-left: 2px solid var(--lfm-red);
+    border-radius: 0 var(--lfm-radius) var(--lfm-radius) 0;
+}
+
+.info-banner-icon {
+    color: var(--lfm-red);
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2px;
+}
+
+.info-banner-text {
+    font-size: 11px;
+    color: var(--lfm-text-secondary);
+    line-height: 1.4;
+}
+
+.info-banner-text strong {
+    color: var(--lfm-text);
+}

@@ -1,0 +1,103 @@
+/* Last.fm Duplicate Detector - Badge Styles */
+
+/* Dynamic Badge Mode Control */
+body.lfm-badge-mode-icon .lfm-badge span:not(.lfm-badge-icon) {
+    display: none !important;
+}
+
+body.lfm-badge-mode-icon .lfm-badge {
+    padding: 3px;
+    width: 20px;
+    height: 20px;
+}
+
+body.lfm-badge-mode-none .lfm-badge {
+    display: none !important;
+}
+
+.lfm-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 6px;
+    border-radius: 2px;
+    /* Last.fm uses mostly square/slightly rounded corners for labels */
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 8px;
+    vertical-align: middle;
+    line-height: 1;
+    box-sizing: border-box;
+    animation: lfmFadeIn 0.3s ease-out;
+    user-select: none;
+    gap: 4px;
+    /* Space between icon and text */
+}
+
+/* Badge Icon specific styling */
+.lfm-badge-icon {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-right: 0 !important;
+    /* Managed by gap */
+}
+
+.lfm-badge-icon svg {
+    stroke-width: 3px;
+    /* Slightly thicker for small scale clarity */
+}
+
+/* Bold Red Badge - Inspired by Last.fm High-priority highlights */
+.lfm-badge-duplicate {
+    color: #fff;
+    background: var(--lfm-red);
+    box-shadow: 0 1px 3px rgba(217, 35, 35, 0.25);
+    border: none;
+    transition: transform var(--lfm-transition-fast), background var(--lfm-transition-fast), box-shadow var(--lfm-transition-fast);
+}
+
+.lfm-badge-duplicate:hover {
+    background: var(--lfm-red-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(217, 35, 35, 0.3);
+}
+
+/* Subtle Green Badge - Inspired by 'Following' / 'Success' status */
+.lfm-badge-original {
+    color: var(--lfm-green);
+    /* Using clr-fern */
+    background: var(--lfm-green-light);
+    border: 1px solid rgba(0, 153, 102, 0.2);
+    padding: 2px 5px;
+    transition: all var(--lfm-transition-fast);
+}
+
+.lfm-badge-original:hover {
+    background: rgba(0, 153, 102, 0.15);
+    border-color: rgba(0, 153, 102, 0.4);
+}
+
+/* Row highlighting */
+.lfm-row-duplicate {
+    background-color: var(--lfm-red-light) !important;
+    transition: background-color 0.3s ease;
+}
+
+.lfm-row-duplicate:hover {
+    background-color: rgba(217, 35, 35, 0.08) !important;
+}
+
+.lfm-song-duplicate {
+    color: var(--lfm-red) !important;
+    font-weight: 500;
+    transition: opacity var(--lfm-transition-fast);
+}
+
+.lfm-song-duplicate:hover {
+    opacity: 0.9;
+    text-decoration: underline;
+}

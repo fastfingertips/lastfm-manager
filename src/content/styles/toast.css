@@ -1,0 +1,123 @@
+/* Last.fm Duplicate Detector - Toast Notifications */
+/* Native Last.fm style notifications */
+/* Uses LfmIcons for icons via JavaScript */
+
+.lfm-toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.lfm-toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: var(--lfm-radius);
+    box-shadow: var(--lfm-shadow);
+    background: var(--lfm-bg);
+    color: var(--lfm-text);
+    font-size: 14px;
+    line-height: 1.4;
+    max-width: 350px;
+    pointer-events: auto;
+    animation: toastSlideIn 0.3s ease-out;
+    cursor: pointer;
+}
+
+.lfm-toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.lfm-toast-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.lfm-toast-message {
+    flex: 1;
+}
+
+/* Success variant */
+.lfm-toast--success {
+    background-color: var(--lfm-green-light);
+    color: var(--lfm-green);
+    border-left: 4px solid var(--lfm-green);
+}
+
+.lfm-toast--success .lfm-toast-icon {
+    color: var(--lfm-green);
+}
+
+/* Error variant */
+.lfm-toast--error {
+    background-color: var(--lfm-red-light);
+    color: var(--lfm-red);
+    border-left: 4px solid var(--lfm-red);
+}
+
+.lfm-toast--error .lfm-toast-icon {
+    color: var(--lfm-red);
+}
+
+/* Warning variant */
+.lfm-toast--warning {
+    background-color: #ffefe5;
+    /* Keep hardcoded for now or add to vars if common */
+    color: #f60;
+    border-left: 4px solid #f60;
+}
+
+.lfm-toast--warning .lfm-toast-icon {
+    color: #f60;
+}
+
+/* Info variant */
+.lfm-toast--info {
+    background-color: #e9effb;
+    color: var(--lfm-blue);
+    border-left: 4px solid var(--lfm-blue);
+}
+
+.lfm-toast--info .lfm-toast-icon {
+    color: var(--lfm-blue);
+}
+
+/* Hiding animation */
+.lfm-toast--hiding {
+    animation: toastSlideOut 0.3s ease-in forwards;
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}

@@ -1,0 +1,154 @@
+/* Shared Button System */
+
+/* Base Button */
+.lfm-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: var(--lfm-radius);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--lfm-transition);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.lfm-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Button Variants */
+.lfm-btn-primary {
+    background: var(--lfm-red);
+    color: #fff;
+}
+
+.lfm-btn-primary:hover:not(:disabled) {
+    background: var(--lfm-red-hover);
+}
+
+.lfm-btn-secondary {
+    background: transparent;
+    color: var(--lfm-text-secondary);
+    border: 1px solid var(--lfm-border);
+}
+
+.lfm-btn-secondary:hover:not(:disabled) {
+    color: var(--lfm-text);
+    border-color: var(--lfm-text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.lfm-btn-secondary.lfm-btn-active {
+    color: var(--lfm-text);
+    border-color: var(--lfm-red);
+    background: rgba(217, 35, 35, 0.15);
+}
+
+.lfm-btn-danger {
+    background: var(--lfm-red);
+    color: #fff;
+}
+
+.lfm-btn-danger:hover:not(:disabled) {
+    background: var(--lfm-red-dark);
+}
+
+/* Full Width Button */
+.lfm-btn-full {
+    width: 100%;
+    justify-content: center;
+    background: var(--lfm-red);
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background var(--lfm-transition);
+    font-family: inherit;
+    padding: 10px;
+    border-radius: var(--lfm-radius);
+}
+
+.lfm-btn-full:hover {
+    background: var(--lfm-red-hover);
+}
+
+/* Icon Button (Tiny) */
+.btn-icon-tiny {
+    background: none;
+    border: none;
+    color: var(--lfm-text-secondary);
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: var(--lfm-radius);
+    transition: all var(--lfm-transition);
+}
+
+.btn-icon-tiny:hover {
+    color: var(--lfm-text);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Button Icon Wrapper */
+.lfm-icon {
+    display: inline-flex;
+    width: 14px;
+    height: 14px;
+}
+
+.lfm-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Button Loading State */
+.lfm-btn-loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.lfm-btn-loading .lfm-icon {
+    animation: lfm-spin 1s linear infinite;
+}
+
+@keyframes lfm-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Button Group */
+.lfm-btn-group {
+    display: inline-flex;
+    gap: 0;
+}
+
+.lfm-btn-group .lfm-btn {
+    border-radius: 0;
+}
+
+.lfm-btn-group .lfm-btn:first-child {
+    border-radius: var(--lfm-radius) 0 0 var(--lfm-radius);
+}
+
+.lfm-btn-group .lfm-btn:last-child {
+    border-radius: 0 var(--lfm-radius) var(--lfm-radius) 0;
+}
+
+.lfm-btn-group .lfm-btn:not(:last-child) {
+    border-right: none;
+}

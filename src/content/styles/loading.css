@@ -1,0 +1,102 @@
+/* Last.fm Duplicate Detector - Loading State */
+/* Shown during scanning/processing */
+
+.lfm-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+    color: var(--lfm-text-secondary);
+}
+
+.lfm-loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--lfm-border-light);
+    border-top-color: var(--lfm-red);
+    border-radius: 50%;
+    animation: lfmSpin 0.8s linear infinite;
+}
+
+.lfm-loading-text {
+    font-size: 14px;
+}
+
+/* Inline loading (small) */
+.lfm-loading--inline {
+    display: inline-flex;
+    padding: 0;
+    gap: 8px;
+}
+
+.lfm-loading--inline .lfm-loading-spinner {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+}
+
+/* Overlay loading */
+.lfm-loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 9999;
+}
+
+.lfm-loading-overlay .lfm-loading-spinner {
+    width: 48px;
+    height: 48px;
+    border-width: 4px;
+}
+
+.lfm-loading-overlay .lfm-loading-text {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Progress bar */
+.lfm-progress {
+    width: 100%;
+    max-width: 300px;
+    height: 4px;
+    background: var(--lfm-border-light);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.lfm-progress-bar {
+    height: 100%;
+    background: var(--lfm-red);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.lfm-progress-bar--indeterminate {
+    width: 30%;
+    animation: lfmProgressIndeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes lfmSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes lfmProgressIndeterminate {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(400%);
+    }
+}

@@ -1,0 +1,31 @@
+/* Last.fm Manager - Content Script Design Tokens */
+/* Light theme to match Last.fm's native aesthetic */
+
+:root {
+    /* Brand Colors */
+    --lfm-red: #d92323;
+    --lfm-red-hover: #f71414;
+    --lfm-red-dark: #b90000;
+    --lfm-red-light: #fae3e2;
+
+    --lfm-green: #096;
+    --lfm-green-light: #e5f4ef;
+    --lfm-blue: #005399;
+
+    /* Light Theme Neutrals (for page injection) */
+    --lfm-text: #222;
+    --lfm-text-secondary: #999;
+    --lfm-bg: #fff;
+    --lfm-bg-alt: #f4f5f7;
+    --lfm-bg-hover: #ebebeb;
+    --lfm-border: #ccc;
+    --lfm-border-light: #eee;
+
+    /* Utils */
+    --lfm-shadow: 0 1px 10px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.2);
+    --lfm-shadow-light: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --lfm-transition: 0.2s ease;
+    --lfm-transition-fast: 0.15s ease;
+    --lfm-radius: 3px;
+    --lfm-radius-round: 10px;
+}
