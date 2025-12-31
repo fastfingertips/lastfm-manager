@@ -211,14 +211,29 @@ const LfmComponents = {
      * Injects Quick Navigation buttons (Next/Back Day)
      */
     injectNavigation(detector) {
-        // Find best injection point
-        const controls = document.querySelector('.library-controls') ||
-            document.querySelector('.content-top .container') ||
-            document.querySelector('.library-header');
+        // 1. Identify all possible containers where navigation might live
+        // These can change when Last.fm switches tabs via AJAX
+        const containers = [
+            '.library-controls',
+            '.content-top .container',
+            '.library-header',
+            '.col-main'
+        ];
 
-        if (!controls) return;
+        let parent = null;
+        for (const selector of containers) {
+            parent = document.querySelector(selector);
+            if (parent && parent.offsetParent !== null) break; // Must be visible
+        }
 
-        if (document.getElementById('lfm-quick-nav')) return;
+        if (!parent) return;
+
+        // 2. Check if we are already in the CORRECT parent
+        const existing = document.getElementById('lfm-quick-nav');
+        if (existing && existing.parentElement === parent) return;
+
+        // If it exists but in wrong parent (due to AJAX), remove it and re-inject
+        if (existing) existing.remove();
 
         const nav = document.createElement('div');
         nav.id = 'lfm-quick-nav';
@@ -247,12 +262,17 @@ const LfmComponents = {
             LfmNavigator.stepDay(1);
         };
 
-        // Try to insert after navigation list, or at the end of the container
-        const anchor = controls.querySelector('.navlist, .secondary-nav, .navlist--more');
-        if (anchor) {
+        // 3. Smart placement: Try to find a navlist to anchor after
+        const anchor = parent.querySelector('.navlist, .secondary-nav, .navlist--more, .content-top-header');
+        if (anchor && anchor.parentElement === parent) {
             anchor.after(nav);
         } else {
-            controls.appendChild(nav);
+            // Prepend if it's the main container, append otherwise
+            if (parent.classList.contains('col-main')) {
+                parent.insertBefore(nav, parent.firstChild);
+            } else {
+                parent.appendChild(nav);
+            }
         }
     },
 

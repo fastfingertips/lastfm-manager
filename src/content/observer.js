@@ -33,7 +33,12 @@ const PageObserver = {
                                 node.matches('tr.chartlist-row') ||
                                 node.querySelector('tr.chartlist-row') ||
                                 node.matches('table.chartlist') ||
-                                node.querySelector('table.chartlist')
+                                node.querySelector('table.chartlist') ||
+                                node.matches('.library-controls') ||
+                                node.querySelector('.library-controls') ||
+                                node.matches('.library-header') ||
+                                node.querySelector('.library-header') ||
+                                node.matches('.content-top')
                             )) {
                                 shouldRescan = true;
                             }

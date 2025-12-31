@@ -132,6 +132,7 @@ const LfmManager = {
         this.state.duplicateCount = stats.duplicates;
 
         // 3. Inject Navigation (Always on library pages)
+        this.log('Injecting quick navigation buttons...');
         LfmComponents.injectNavigation(this);
 
         // 4. Inject Scrobble Panel UI if it's the user's own library
