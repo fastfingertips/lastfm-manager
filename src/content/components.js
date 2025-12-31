@@ -252,8 +252,8 @@ const LfmComponents = {
             return btn;
         };
 
-        nav.appendChild(createNavBtn('prev', 'prev', 'BACK'));
-        nav.appendChild(createNavBtn('next', 'next', 'NEXT'));
+        nav.appendChild(createNavBtn('prev', 'prev', 'PREV DAY'));
+        nav.appendChild(createNavBtn('next', 'next', 'NEXT DAY'));
 
         // 4. Smart placement: Near date picker if it exists, otherwise at the end of controls
         const datePicker = controls.querySelector('.library-date-picker, .library-controls-datepicker');
