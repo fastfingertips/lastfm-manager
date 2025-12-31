@@ -98,29 +98,27 @@
                     </div>
 
                     <div class="settings-panel">
-                        <div class="action-row" style="justify-content: flex-end;">
+                        <div class="section-title">
+                            <span>DETECTION ENGINE</span>
                             <div class="info-trigger-wrapper">
-                                <div class="btn-icon-tiny info-trigger">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <button class="btn-help-trigger info-trigger" aria-label="Detection Info">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
                                     </svg>
-                                </div>
-                                <div class="info-hover-card" style="top: 45px;">
-                                    <div class="info-banner"
-                                        style="margin: 0; border-radius: 4px; background: #000; border: 1px solid var(--lfm-border); border-left: 2px solid var(--lfm-red);">
-                                        <div class="info-banner-text">
-                                            <strong>Duplicate Detection:</strong> Only scrobbles currently loaded in
-                                            your browser view are analyzed.
-                                        </div>
+                                </button>
+                                <div class="info-hover-card">
+                                    <div class="help-card-content">
+                                        <div class="help-card-title">How detection works</div>
+                                        <p>Last.fm Manager analyzes scrobbles currently visible on the page. It groups
+                                            tracks by Artist and Name, then highlights ones within your <strong>Time
+                                                Tolerance</strong> window.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="section-title">DETECTION ENGINE</div>
 
                         <div class="option-row">
                             <label for="opt-fuzzyMatch">
