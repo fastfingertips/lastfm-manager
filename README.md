@@ -1,6 +1,6 @@
 # Last.fm Manager
 
-Premium library management tools for Last.fm — duplicate detection, metadata inspection, and more.
+Premium library management toolkit for Last.fm — streamlining duplicate detection, daily navigation, and history cleanup.
 
 ## Screenshots
 
@@ -14,11 +14,12 @@ Premium library management tools for Last.fm — duplicate detection, metadata i
 
 ## Features
 
-- **Duplicate Detection** — Fuzzy matching with configurable time tolerance
-- **Metadata Inspector** — View scrobble details with streaming links
-- **Bulk Actions** — Select and delete multiple scrobbles
-- **Settings Portability** — Export/import as JSON
-- **Safety Levels** — Configurable delete confirmation
+- **Duplicate Detection** — Fuzzy matching with configurable time tolerance (detects remasters/variants)
+- **Quick Navigation** — Browse your library day-by-day with on-page buttons or Arrow keys
+- **Bulk Actions** — Select and delete multiple scrobbles with one click
+- **Safety Levels** — Configurable delete confirmation (Input "DELETE" word or simple alert)
+- **Settings Portability** — Export/import your engine configurations as JSON
+- **Dynamic UI** — Seamlessly integrates into Last.fm's native design (Dark Mode supported)
 
 ## Structure
 
