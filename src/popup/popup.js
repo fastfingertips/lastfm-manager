@@ -108,7 +108,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Configuration Portability
+    // 4. Quick Navigation Actions
+    const prevDayBtn = document.getElementById('btn-prev-day');
+    const nextDayBtn = document.getElementById('btn-next-day');
+
+    if (prevDayBtn) {
+        prevDayBtn.addEventListener('click', () => {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                if (tabs[0]) chrome.tabs.sendMessage(tabs[0].id, { action: 'navigateDay', step: -1 });
+            });
+        });
+    }
+
+    if (nextDayBtn) {
+        nextDayBtn.addEventListener('click', () => {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                if (tabs[0]) chrome.tabs.sendMessage(tabs[0].id, { action: 'navigateDay', step: 1 });
+            });
+        });
+    }
+
+    // 5. Configuration Portability
     const exportBtn = document.getElementById('btn-export-settings');
     if (exportBtn) exportBtn.onclick = () => SettingsManager.export();
 

@@ -51,6 +51,11 @@
         if (typeof LfmManager !== 'undefined') {
             LfmManager.init();
 
+            // Initialize navigation hotkeys
+            if (typeof LfmNavigator !== 'undefined') {
+                LfmNavigator.initHotkeys();
+            }
+
             // Set up page observers
             const handleRescan = () => {
                 LfmManager.reset();
@@ -84,7 +89,11 @@
             LfmManager.detect().then(results => {
                 sendResponse({ success: true, ...results });
             });
-            return true; // Keep message channel open for async response
+            return true;
+        } else if (request.action === 'navigateDay') {
+            if (typeof LfmNavigator !== 'undefined') {
+                LfmNavigator.stepDay(request.step);
+            }
         }
         return true;
     });

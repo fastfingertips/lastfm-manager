@@ -207,6 +207,20 @@
                                 <option value="text">Input "DELETE" word</option>
                             </select>
                         </div>
+
+                        <div class="section-title">QUICK NAVIGATION</div>
+                        <div class="option-row" style="padding: 10px 0;">
+                            <div style="display: flex; gap: 8px; width: 100%;">
+                                <button id="btn-prev-day" class="btn-icon-tiny"
+                                    style="flex: 1; border: 1px solid var(--lfm-border); padding: 8px; font-weight: 500; font-size: 11px;">
+                                    ← BACK DAY
+                                </button>
+                                <button id="btn-next-day" class="btn-icon-tiny"
+                                    style="flex: 1; border: 1px solid var(--lfm-border); padding: 8px; font-weight: 500; font-size: 11px;">
+                                    NEXT DAY →
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -237,13 +251,13 @@
                     </div>
                 </div>
 
-                <div class="option-row" style="opacity: 0.6; pointer-events: none;">
+                <div class="option-row">
                     <label for="opt-hotkeysEnabled">
                         <strong>Enable Hotkeys</strong>
                         <div class="text-sub">Control scrobble management with your keyboard</div>
                     </label>
                     <label class="switch">
-                        <input type="checkbox" id="opt-hotkeysEnabled" disabled>
+                        <input type="checkbox" id="opt-hotkeysEnabled">
                         <span class="slider"></span>
                     </label>
                 </div>
@@ -257,6 +271,26 @@
                     </div>
                     <kbd
                         style="background: #333; color: #fff; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 11px; border-bottom: 2px solid #555;">D</kbd>
+                </div>
+
+                <div class="option-row"
+                    style="opacity: 0.5; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; margin-bottom: 12px;">
+                    <div style="flex: 1;">
+                        <span style="color: #fff; font-size: 13px; font-weight: 500;">Next Day</span>
+                        <div class="text-sub">Navigate to the next day in library (Draft)</div>
+                    </div>
+                    <kbd
+                        style="background: #333; color: #fff; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 11px; border-bottom: 2px solid #555;">→</kbd>
+                </div>
+
+                <div class="option-row"
+                    style="opacity: 0.5; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; margin-bottom: 12px;">
+                    <div style="flex: 1;">
+                        <span style="color: #fff; font-size: 13px; font-weight: 500;">Previous Day</span>
+                        <div class="text-sub">Navigate to the previous day in library (Draft)</div>
+                    </div>
+                    <kbd
+                        style="background: #333; color: #fff; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 11px; border-bottom: 2px solid #555;">←</kbd>
                 </div>
 
                 <div class="empty-state"

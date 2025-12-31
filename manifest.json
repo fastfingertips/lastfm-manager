@@ -37,6 +37,7 @@
                 "src/content/actions.js",
                 "src/content/scrobble-info.js",
                 "src/content/components.js",
+                "src/content/navigator.js",
                 "src/content/detector.js",
                 "src/content/observer.js",
                 "src/content/main.js"
