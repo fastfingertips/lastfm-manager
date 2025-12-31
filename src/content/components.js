@@ -142,6 +142,7 @@ const LfmComponents = {
         }
 
         this.monitorMetadata(detector, list);
+        this.injectNavigation(detector);
 
         // 1. Ensure Action Bar exists (ALWAYS - even without duplicates)
         let actionBar = document.getElementById('lfm-action-bar');
@@ -205,6 +206,51 @@ const LfmComponents = {
         }
 
         this.updateActionBar(detector);
+    },
+
+    /**
+     * Injects Quick Navigation buttons (Next/Back Day)
+     */
+    injectNavigation(detector) {
+        const controls = document.querySelector('.library-controls');
+        if (!controls) return;
+
+        if (document.getElementById('lfm-quick-nav')) return;
+
+        const nav = document.createElement('div');
+        nav.id = 'lfm-quick-nav';
+        nav.className = 'lfm-quick-nav';
+
+        const prevIcon = getIcon('prev');
+        const nextIcon = getIcon('next');
+
+        nav.innerHTML = `
+            <button id="lfm-btn-prev-day" class="lfm-nav-btn" title="Previous Day (Left Arrow)">
+                <span class="lfm-nav-btn-icon">${prevIcon}</span>
+                <span class="lfm-nav-btn-text">BACK DAY</span>
+            </button>
+            <button id="lfm-btn-next-day" class="lfm-nav-btn" title="Next Day (Right Arrow)">
+                <span class="lfm-nav-btn-text">NEXT DAY</span>
+                <span class="lfm-nav-btn-icon">${nextIcon}</span>
+            </button>
+        `;
+
+        nav.querySelector('#lfm-btn-prev-day').onclick = (e) => {
+            e.preventDefault();
+            LfmNavigator.stepDay(-1);
+        };
+        nav.querySelector('#lfm-btn-next-day').onclick = (e) => {
+            e.preventDefault();
+            LfmNavigator.stepDay(1);
+        };
+
+        // Insert into library-controls, usually after the navlist
+        const navlist = controls.querySelector('.navlist');
+        if (navlist) {
+            navlist.after(nav);
+        } else {
+            controls.appendChild(nav);
+        }
     },
 
     /**

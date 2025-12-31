@@ -57,7 +57,8 @@
                 "src/content/styles/loading.css",
                 "src/content/styles/modal.css",
                 "src/content/styles/icons.css",
-                "src/content/styles/header-cta.css"
+                "src/content/styles/header-cta.css",
+                "src/content/styles/navigation.css"
             ],
             "run_at": "document_end"
         }
