@@ -7,9 +7,6 @@
         "activeTab",
         "storage"
     ],
-    "host_permissions": [
-        "*://*.last.fm/*"
-    ],
     "action": {
         "default_popup": "src/popup/popup.html",
         "default_title": "Last.fm Manager"

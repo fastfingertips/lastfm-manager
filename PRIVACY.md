@@ -14,7 +14,7 @@
 |------------|---------|
 | `activeTab` | Popup communication |
 | `storage` | Save user settings locally |
-| `host_permissions` | Run on Last.fm pages |
+| `Content Scripts` | Detect duplicates on Last.fm Library pages |
 
 ## Contact
 
