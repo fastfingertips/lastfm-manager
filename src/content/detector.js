@@ -108,15 +108,20 @@ const LfmManager = {
         const rows = document.querySelectorAll(this.CONFIG.selectors.row);
         this.log(`Scanning ${rows.length} rows.`);
 
-        if (rows.length === 0) return { originals: 0, duplicates: 0 };
+        let stats = { originals: 0, duplicates: 0 };
+        let groups = [];
 
-        // 1. Analyze Rows using Engine (with settings)
-        const { groups, stats } = LfmEngine.analyzeRows(rows, {
-            toleranceSeconds: this.state.settings.timeTolerance,
-            fuzzy: this.state.settings.fuzzyMatch
-        });
+        if (rows.length > 0) {
+            // Analyze Rows using Engine (with settings)
+            const analysis = LfmEngine.analyzeRows(rows, {
+                toleranceSeconds: this.state.settings.timeTolerance,
+                fuzzy: this.state.settings.fuzzyMatch
+            });
+            groups = analysis.groups;
+            stats = analysis.stats;
+        }
 
-        // 2. Apply UI for each scrobble
+        // Apply UI for each scrobble
         groups.forEach((group) => {
             group.forEach((entry) => {
                 LfmComponents.applyRowUI(this, entry.row, entry.isDuplicate, group.length > 1);
@@ -126,7 +131,10 @@ const LfmManager = {
         this.log(`Complete. Originals: ${stats.originals}, Duplicates: ${stats.duplicates}`);
         this.state.duplicateCount = stats.duplicates;
 
-        // 3. Inject UI if applicable
+        // 3. Inject Navigation (Always on library pages)
+        LfmComponents.injectNavigation(this);
+
+        // 4. Inject Scrobble Panel UI if it's the user's own library
         const isMyLib = LfmEngine.isMyLibrary();
         if (isMyLib) {
             this.injectUI(stats.duplicates);

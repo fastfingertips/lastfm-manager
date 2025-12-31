@@ -142,7 +142,6 @@ const LfmComponents = {
         }
 
         this.monitorMetadata(detector, list);
-        this.injectNavigation(detector);
 
         // 1. Ensure Action Bar exists (ALWAYS - even without duplicates)
         let actionBar = document.getElementById('lfm-action-bar');
@@ -212,7 +211,11 @@ const LfmComponents = {
      * Injects Quick Navigation buttons (Next/Back Day)
      */
     injectNavigation(detector) {
-        const controls = document.querySelector('.library-controls');
+        // Find best injection point
+        const controls = document.querySelector('.library-controls') ||
+            document.querySelector('.content-top .container') ||
+            document.querySelector('.library-header');
+
         if (!controls) return;
 
         if (document.getElementById('lfm-quick-nav')) return;
@@ -244,10 +247,10 @@ const LfmComponents = {
             LfmNavigator.stepDay(1);
         };
 
-        // Insert into library-controls, usually after the navlist
-        const navlist = controls.querySelector('.navlist');
-        if (navlist) {
-            navlist.after(nav);
+        // Try to insert after navigation list, or at the end of the container
+        const anchor = controls.querySelector('.navlist, .secondary-nav, .navlist--more');
+        if (anchor) {
+            anchor.after(nav);
         } else {
             controls.appendChild(nav);
         }
