@@ -211,54 +211,44 @@ const LfmComponents = {
      * Injects Quick Navigation buttons (Next/Back Day)
      */
     injectNavigation(detector, retryCount = 0) {
-        // 1. Find a stable parent container
-        const controls = document.querySelector('.library-controls') ||
-            document.querySelector('.library-header') ||
-            document.querySelector('.content-top .container');
+        // Ensure icons are ready
+        if (typeof LfmIcons !== 'undefined') LfmIcons.initSprite();
 
-        if (!controls) {
-            // If we are on a library page but controls aren't here yet, wait a bit
-            if (retryCount < 10 && LfmEngine.isLibraryPage()) {
+        // 1. Identify potential stable parents that are likely visible
+        const navlist = document.querySelector('.navlist-items') ||
+            document.querySelector('.navlist') ||
+            document.querySelector('.library-controls');
+
+        if (!navlist) {
+            if (retryCount < 5 && LfmEngine.isLibraryPage()) {
                 setTimeout(() => this.injectNavigation(detector, retryCount + 1), 500);
             }
             return;
         }
 
-        // 2. Identify if date picker is present (might be late)
-        const datePicker = controls.querySelector('.library-date-picker, .library-controls-datepicker');
-
-        // If date picker is missing but it's a library page, it might be loading.
-        // We'll proceed with fallback but keep trying to find the date picker for better placement.
-        if (!datePicker && retryCount < 10 && LfmEngine.isLibraryPage()) {
-            setTimeout(() => this.injectNavigation(detector, retryCount + 1), 1000);
-        }
-
-        // 3. Check existing and visibility
+        // 2. Clear out any broken/old navigation instances
         const existing = document.getElementById('lfm-quick-nav');
         if (existing) {
-            // Check if it's actually visible and attached correctly
-            if (existing.parentElement && existing.offsetParent !== null) {
-                // If it exists but we just found the date picker, move it!
-                if (datePicker && existing.nextElementSibling !== datePicker) {
-                    datePicker.before(existing);
-                }
-                return;
-            }
+            // If it's attached to the navlist now, we're good
+            if (existing.parentElement && existing.offsetParent !== null) return;
             existing.remove();
         }
 
-        // 4. Create the navigation container
+        // 3. Create the navigation container
         const nav = document.createElement('div');
         nav.id = 'lfm-quick-nav';
-        nav.className = 'lfm-quick-nav integrated';
+        nav.className = 'lfm-quick-nav integrated-navlist';
 
         const createNavBtn = (direction, iconName, title) => {
             const btn = document.createElement('button');
             btn.className = `lfm-nav-btn lfm-nav-btn--${direction}`;
             btn.title = title;
-            btn.innerHTML = `<span class="lfm-nav-btn-icon">${getIcon(iconName)}</span>`;
+            // Use safe icon fetching
+            const iconHtml = typeof getIcon === 'function' ? getIcon(iconName) : '';
+            btn.innerHTML = `<span class="lfm-nav-btn-icon">${iconHtml}</span>`;
             btn.onclick = (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 LfmNavigator.stepDay(direction === 'prev' ? -1 : 1);
             };
             return btn;
@@ -267,14 +257,15 @@ const LfmComponents = {
         nav.appendChild(createNavBtn('prev', 'prev', 'Previous Day (Left Arrow)'));
         nav.appendChild(createNavBtn('next', 'next', 'Next Day (Right Arrow)'));
 
-        // 5. Smart placement
-        if (datePicker) {
-            datePicker.before(nav);
+        // 4. Integrated Placement: Ideally inside the navlist items as the last item
+        if (navlist.classList.contains('navlist-items')) {
+            const li = document.createElement('li');
+            li.className = 'navlist-item lfm-nav-li';
+            li.appendChild(nav);
+            navlist.appendChild(li);
         } else {
-            // Fallback: after the navlist or at start
-            const anchor = controls.querySelector('.navlist, .secondary-nav');
-            if (anchor) anchor.after(nav);
-            else controls.prepend(nav);
+            // Fallback: after the navlist or at start of controls
+            navlist.after(nav);
         }
     },
 

@@ -2,45 +2,48 @@
  * Last.fm Manager - Quick Navigation Styles
  */
 
-/* Container styling when integrated with date picker */
-.lfm-quick-nav.integrated {
+/* Container integrated as a navlist item */
+.lfm-nav-li {
+    display: inline-flex !important;
+    align-items: center;
+    margin-left: 15px !important;
+    vertical-align: middle;
+}
+
+.lfm-quick-nav.integrated-navlist {
     display: inline-flex;
     align-items: center;
-    vertical-align: middle;
-    margin-right: 12px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    overflow: hidden;
+    height: 28px;
+    /* Slightly more compact for the navlist */
 }
 
 .lfm-nav-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 100%;
     padding: 0;
-    background: #fff;
-    border: 1px solid #e5e5e5;
+    background: transparent;
+    border: none;
     color: #666;
     cursor: pointer;
     transition: all 0.15s ease;
     user-select: none;
-    z-index: 10;
 }
 
-/* Rounded corners for the outer buttons when next to the date picker */
 .lfm-nav-btn--prev {
-    border-radius: 3px 0 0 3px;
-    border-right: none;
-}
-
-.lfm-nav-btn--next {
-    border-radius: 0 3px 3px 0;
+    border-right: 1px solid #eee;
 }
 
 .lfm-nav-btn:hover {
     background: #f4f4f4;
     color: #d51007;
     /* Last.fm Red */
-    border-color: #ccc;
 }
 
 .lfm-nav-btn:active {
@@ -48,27 +51,33 @@
 }
 
 .lfm-nav-btn-icon {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .lfm-nav-btn-icon svg {
-    width: 12px;
-    height: 12px;
+    width: 100%;
+    height: 100%;
 }
 
 /* Dark mode support */
-[data-theme="dark"] .lfm-nav-btn {
+[data-theme="dark"] .lfm-quick-nav.integrated-navlist {
     background: #111;
     border-color: #333;
+}
+
+[data-theme="dark"] .lfm-nav-btn {
     color: #aaa;
+}
+
+[data-theme="dark"] .lfm-nav-btn--prev {
+    border-right-color: #222;
 }
 
 [data-theme="dark"] .lfm-nav-btn:hover {
     background: #222;
     color: #fff;
-    border-color: #444;
 }
