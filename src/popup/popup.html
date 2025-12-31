@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Last.fm Manager</title>
+    <link rel="icon" type="image/png" href="../../icons/icon16.png">
 
     <!-- Shared Styles -->
     <link rel="stylesheet" href="../shared/variables.css">
@@ -29,6 +30,7 @@
         <!-- Header -->
         <div class="header">
             <div class="logo-area">
+                <img src="../../icons/icon48.png" alt="Logo" style="width: 24px; height: 24px; border-radius: 4px;">
                 <h1>Last.fm Manager</h1>
                 <span class="version">v1.0.1</span>
             </div>
@@ -81,19 +83,18 @@
 
                 <div class="module-content">
                     <!-- Read-only notice for other users' libraries -->
-                    <div id="read-only-banner" class="info-banner"
-                        style="display: none; margin: 0 15px 15px 15px; background: rgba(255,165,0,0.1); border-left: 3px solid orange; padding: 10px; border-radius: 4px;">
-                        <div class="info-banner-icon" style="color: orange; padding-top: 5px;">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    <div id="read-only-banner" class="read-only-notice" style="display: none;">
+                        <div class="icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="12" y1="8" x2="12" y2="12"></line>
                                 <line x1="12" y1="16" x2="12.01" y2="16"></line>
                             </svg>
                         </div>
-                        <div class="info-banner-text" style="color: var(--lfm-text); font-size: 11px;">
-                            <strong>Read-Only Mode:</strong> You are viewing another user's library. Deletion is
-                            disabled.
+                        <div class="content">
+                            <span class="title">Read-Only Mode</span>
+                            <p class="text">You are viewing another user's library. Deletion is disabled.</p>
                         </div>
                     </div>
 
@@ -262,8 +263,10 @@
             <div class="settings-panel">
                 <div class="section-title">LAST.FM MANAGER</div>
                 <div
-                    style="padding: 15px; background: var(--lfm-bg-alt); border: 1px solid var(--lfm-border); border-radius: 4px;">
-                    <p style="margin-top: 0; font-size: 13px; line-height: 1.5;">
+                    style="padding: 20px; background: var(--lfm-bg-alt); border: 1px solid var(--lfm-border); border-radius: 4px; text-align: center;">
+                    <img src="../../icons/icon128.png" alt="Last.fm Manager"
+                        style="width: 80px; height: 80px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    <p style="margin-top: 0; font-size: 13px; line-height: 1.5; text-align: left;">
                         A comprehensive toolkit for managing your Last.fm library, focusing on duplicate detection and
                         scrobble cleanup.
                     </p>
