@@ -212,67 +212,75 @@ const LfmComponents = {
      */
     injectNavigation(detector) {
         // 1. Identify all possible containers where navigation might live
-        // These can change when Last.fm switches tabs via AJAX
         const containers = [
+            '.library-date-picker', // Native date picker area
+            '.library-controls-datepicker',
             '.library-controls',
-            '.content-top .container',
-            '.library-header',
-            '.col-main'
+            '.content-top .container'
         ];
 
         let parent = null;
         for (const selector of containers) {
             parent = document.querySelector(selector);
-            if (parent && parent.offsetParent !== null) break; // Must be visible
+            if (parent && parent.offsetParent !== null) break;
         }
 
         if (!parent) return;
 
-        // 2. Check if we are already in the CORRECT parent
-        const existing = document.getElementById('lfm-quick-nav');
-        if (existing && existing.parentElement === parent) return;
+        // Ensure we find the inner container if it's the date picker
+        const datePickerBtn = parent.querySelector('.date-range-picker-button') || parent;
 
-        // If it exists but in wrong parent (due to AJAX), remove it and re-inject
+        // 2. Check if we are already in the CORRECT position
+        const existing = document.getElementById('lfm-quick-nav');
+        if (existing && (existing.nextElementSibling === datePickerBtn || datePickerBtn.contains(existing))) return;
+
         if (existing) existing.remove();
 
-        const nav = document.createElement('div');
-        nav.id = 'lfm-quick-nav';
-        nav.className = 'lfm-quick-nav';
-
-        const prevIcon = getIcon('prev');
-        const nextIcon = getIcon('next');
-
-        nav.innerHTML = `
-            <button id="lfm-btn-prev-day" class="lfm-nav-btn" title="Previous Day (Left Arrow)">
-                <span class="lfm-nav-btn-icon">${prevIcon}</span>
-                <span class="lfm-nav-btn-text">BACK DAY</span>
-            </button>
-            <button id="lfm-btn-next-day" class="lfm-nav-btn" title="Next Day (Right Arrow)">
-                <span class="lfm-nav-btn-text">NEXT DAY</span>
-                <span class="lfm-nav-btn-icon">${nextIcon}</span>
-            </button>
-        `;
-
-        nav.querySelector('#lfm-btn-prev-day').onclick = (e) => {
-            e.preventDefault();
-            LfmNavigator.stepDay(-1);
-        };
-        nav.querySelector('#lfm-btn-next-day').onclick = (e) => {
-            e.preventDefault();
-            LfmNavigator.stepDay(1);
+        // Create buttons
+        const createNavBtn = (id, direction, iconName, title) => {
+            const btn = document.createElement('button');
+            btn.id = id;
+            btn.className = `lfm-nav-btn lfm-nav-btn--${direction}`;
+            btn.title = title;
+            btn.innerHTML = `<span class="lfm-nav-btn-icon">${getIcon(iconName)}</span>`;
+            btn.onclick = (e) => {
+                e.preventDefault();
+                LfmNavigator.stepDay(direction === 'prev' ? -1 : 1);
+            };
+            return btn;
         };
 
-        // 3. Smart placement: Try to find a navlist to anchor after
-        const anchor = parent.querySelector('.navlist, .secondary-nav, .navlist--more, .content-top-header');
-        if (anchor && anchor.parentElement === parent) {
-            anchor.after(nav);
+        const prevBtn = createNavBtn('lfm-btn-prev-day', 'prev', 'prev', 'Previous Day (Left Arrow)');
+        const nextBtn = createNavBtn('lfm-btn-next-day', 'next', 'next', 'Next Day (Right Arrow)');
+
+        // 3. Integrated Placement
+        if (datePickerBtn.classList.contains('date-range-picker-button')) {
+            // Place on either side of the date picker button
+            datePickerBtn.before(prevBtn);
+            datePickerBtn.after(nextBtn);
+
+            // Add a wrapper class to the parent for styling
+            datePickerBtn.parentElement.classList.add('lfm-nav-integrated');
+            // We need a dummy ID to avoid re-injections if we use separate buttons
+            const ghost = document.createElement('div');
+            ghost.id = 'lfm-quick-nav';
+            ghost.style.display = 'none';
+            datePickerBtn.after(ghost);
         } else {
-            // Prepend if it's the main container, append otherwise
-            if (parent.classList.contains('col-main')) {
-                parent.insertBefore(nav, parent.firstChild);
-            } else {
-                parent.appendChild(nav);
-            }
+            // Fallback: use a wrapper
+            const nav = document.createElement('div');
+            nav.id = 'lfm-quick-nav';
+            nav.className = 'lfm-quick-nav integrated';
+            nav.appendChild(prevBtn);
+
+            // Add text for clarity in fallback mode
+            const text = document.createElement('span');
+            text.className = 'lfm-nav-text';
+            text.textContent = 'DATE NAV';
+            nav.appendChild(text);
+
+            nav.appendChild(nextBtn);
+            parent.appendChild(nav);
         }
     },
 

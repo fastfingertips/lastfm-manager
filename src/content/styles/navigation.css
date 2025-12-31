@@ -1,50 +1,71 @@
 /**
- * Last.fm Manager - Quick Navigation Styles
+ * Last.fm Manager - Quick Navigation Styles (Integrated)
  */
 
-.lfm-quick-nav {
-    display: flex;
-    gap: 8px;
-    margin: 8px 0;
+/* Container styling when integrated with date picker */
+.lfm-nav-integrated {
+    display: inline-flex !important;
     align-items: center;
+    vertical-align: middle;
+}
+
+.lfm-quick-nav.integrated {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 10px 0;
 }
 
 .lfm-nav-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    background: var(--lfm-bg-alt, #f4f4f4);
-    border: 1px solid var(--lfm-border-light, #e5e5e5);
-    border-radius: 6px;
-    color: var(--lfm-text-primary, #333);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
-    height: 32px;
-}
-
-.lfm-nav-btn:hover {
-    background: var(--lfm-hover, #eee);
-    border-color: var(--lfm-red, #b90000);
-    color: var(--lfm-red, #b90000);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.lfm-nav-btn:active {
-    transform: translateY(0);
-}
-
-.lfm-nav-btn-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 14px;
-    height: 14px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    z-index: 10;
+}
+
+/* Rounded corners for the outer buttons when next to the date picker */
+.lfm-btn-prev-day,
+.lfm-nav-btn--prev {
+    border-radius: 3px 0 0 3px;
+    border-right: none;
+}
+
+.lfm-btn-next-day,
+.lfm-nav-btn--next {
+    border-radius: 0 3px 3px 0;
+    border-left: none;
+}
+
+/* Adjust the native button if we've added our class */
+.lfm-nav-integrated .date-range-picker-button {
+    border-radius: 0 !important;
+    height: 34px !important;
+    margin: 0 !important;
+    border-left: 1px solid #eee !important;
+    border-right: 1px solid #eee !important;
+}
+
+.lfm-nav-btn:hover {
+    background: #f4f4f4;
+    color: #b90000;
+}
+
+.lfm-nav-btn:active {
+    background: #eee;
+}
+
+.lfm-nav-btn-icon {
+    width: 16px;
+    height: 16px;
 }
 
 .lfm-nav-btn-icon svg {
@@ -52,15 +73,25 @@
     height: 100%;
 }
 
-/* Dark mode support if Last.fm has one or if we are using a dark skin */
+.lfm-nav-text {
+    font-size: 11px;
+    font-weight: bold;
+    color: #999;
+    margin: 0 4px;
+}
+
+/* Dark mode support */
 [data-theme="dark"] .lfm-nav-btn {
-    background: #222;
+    background: #111;
     border-color: #333;
-    color: #eee;
+    color: #aaa;
 }
 
 [data-theme="dark"] .lfm-nav-btn:hover {
-    background: #2a2a2a;
-    border-color: #d51007;
+    background: #222;
     color: #fff;
+}
+
+[data-theme="dark"] .lfm-nav-integrated .date-range-picker-button {
+    border-color: #333 !important;
 }
