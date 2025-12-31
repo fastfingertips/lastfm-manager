@@ -211,15 +211,11 @@ const LfmComponents = {
      * Injects Quick Navigation buttons (Next/Back Day)
      */
     injectNavigation(detector, retryCount = 0) {
-        // Ensure icons are ready
-        if (typeof LfmIcons !== 'undefined') LfmIcons.initSprite();
+        // 1. Identify the core container
+        const controls = document.querySelector('.library-controls') ||
+            document.querySelector('.library-header');
 
-        // 1. Identify potential stable parents that are likely visible
-        const navlist = document.querySelector('.navlist-items') ||
-            document.querySelector('.navlist') ||
-            document.querySelector('.library-controls');
-
-        if (!navlist) {
+        if (!controls) {
             if (retryCount < 5 && LfmEngine.isLibraryPage()) {
                 setTimeout(() => this.injectNavigation(detector, retryCount + 1), 500);
             }
@@ -229,7 +225,6 @@ const LfmComponents = {
         // 2. Clear out any broken/old navigation instances
         const existing = document.getElementById('lfm-quick-nav');
         if (existing) {
-            // If it's attached to the navlist now, we're good
             if (existing.parentElement && existing.offsetParent !== null) return;
             existing.remove();
         }
@@ -237,35 +232,39 @@ const LfmComponents = {
         // 3. Create the navigation container
         const nav = document.createElement('div');
         nav.id = 'lfm-quick-nav';
-        nav.className = 'lfm-quick-nav integrated-navlist';
+        nav.className = 'lfm-quick-nav';
 
-        const createNavBtn = (direction, iconName, title) => {
+        const createNavBtn = (direction, iconName, label) => {
             const btn = document.createElement('button');
             btn.className = `lfm-nav-btn lfm-nav-btn--${direction}`;
-            btn.title = title;
-            // Use safe icon fetching
             const iconHtml = typeof getIcon === 'function' ? getIcon(iconName) : '';
-            btn.innerHTML = `<span class="lfm-nav-btn-icon">${iconHtml}</span>`;
+
+            if (direction === 'prev') {
+                btn.innerHTML = `<span class="lfm-nav-btn-icon">${iconHtml}</span><span class="lfm-nav-btn-text">${label}</span>`;
+            } else {
+                btn.innerHTML = `<span class="lfm-nav-btn-text">${label}</span><span class="lfm-nav-btn-icon">${iconHtml}</span>`;
+            }
+
             btn.onclick = (e) => {
                 e.preventDefault();
-                e.stopPropagation();
                 LfmNavigator.stepDay(direction === 'prev' ? -1 : 1);
             };
             return btn;
         };
 
-        nav.appendChild(createNavBtn('prev', 'prev', 'Previous Day (Left Arrow)'));
-        nav.appendChild(createNavBtn('next', 'next', 'Next Day (Right Arrow)'));
+        nav.appendChild(createNavBtn('prev', 'prev', 'BACK'));
+        nav.appendChild(createNavBtn('next', 'next', 'NEXT'));
 
-        // 4. Integrated Placement: Ideally inside the navlist items as the last item
-        if (navlist.classList.contains('navlist-items')) {
-            const li = document.createElement('li');
-            li.className = 'navlist-item lfm-nav-li';
-            li.appendChild(nav);
-            navlist.appendChild(li);
+        // 4. Smart placement: Near date picker if it exists, otherwise at the end of controls
+        const datePicker = controls.querySelector('.library-date-picker, .library-controls-datepicker');
+        if (datePicker) {
+            datePicker.before(nav);
         } else {
-            // Fallback: after the navlist or at start of controls
-            navlist.after(nav);
+            controls.appendChild(nav);
+            // If date picker is expected but not here yet, try again to re-position
+            if (retryCount < 10) {
+                setTimeout(() => this.injectNavigation(detector, retryCount + 1), 1000);
+            }
         }
     },
 
