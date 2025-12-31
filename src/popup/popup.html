@@ -50,6 +50,9 @@
             <button class="tab-btn" data-tab="system">
                 <span>System</span>
             </button>
+            <button class="tab-btn" data-tab="hotkeys">
+                <span>Hotkeys</span>
+            </button>
             <button class="tab-btn" data-tab="about">
                 <span>About</span>
             </button>
@@ -254,6 +257,67 @@
                         <input type="checkbox" id="opt-debugMode">
                         <span class="slider"></span>
                     </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Hotkeys -->
+        <div id="tab-hotkeys" class="tab-content">
+            <div class="settings-panel">
+                <div class="section-title">KEYBOARD SHORTCUTS</div>
+                <div class="option-row">
+                    <label for="opt-hotkeysEnabled">
+                        <strong>Enable Hotkeys</strong>
+                        <div class="text-sub">Control scrobble management with your keyboard</div>
+                    </label>
+                    <label class="switch">
+                        <input type="checkbox" id="opt-hotkeysEnabled">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="section-title">ACTIVE SHORTCUTS</div>
+
+                <div class="option-row">
+                    <div style="flex: 1;">
+                        <span style="color: #fff; font-size: 13px; font-weight: 500;">Sequential Delete</span>
+                        <div class="text-sub">Delete focused duplicate instantly</div>
+                    </div>
+                    <kbd
+                        style="background: #333; color: #fff; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; border-bottom: 2px solid #555;">D</kbd>
+                </div>
+
+                <div class="option-row">
+                    <div style="flex: 1;">
+                        <span style="color: #fff; font-size: 13px; font-weight: 500;">Skip Current</span>
+                        <div class="text-sub">Focus on the next duplicate row</div>
+                    </div>
+                    <kbd
+                        style="background: #333; color: #fff; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; border-bottom: 2px solid #555;">S</kbd>
+                </div>
+
+                <div class="option-row">
+                    <div style="flex: 1;">
+                        <span style="color: #fff; font-size: 13px; font-weight: 500;">Stop / Exit Mode</span>
+                        <div class="text-sub">Disable keyboard mode and remove HUD</div>
+                    </div>
+                    <kbd
+                        style="background: #333; color: #fff; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; border-bottom: 2px solid #555;">ESC</kbd>
+                </div>
+
+                <div class="info-banner"
+                    style="margin-top: 15px; background: rgba(29, 185, 84, 0.1); border-left: 3px solid #1db954;">
+                    <div class="info-banner-icon" style="color: #1db954;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
+                        </svg>
+                    </div>
+                    <div class="info-banner-text" style="color: #999;">
+                        Hotkeys work directly on library pages when the extension is active.
+                    </div>
                 </div>
             </div>
         </div>

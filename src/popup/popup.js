@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'opt-autoSelect': items.autoSelect,
             'opt-fuzzyMatch': items.fuzzyMatch,
             'opt-enabled': items.enabled,
-            'opt-debugMode': items.debugMode
+            'opt-debugMode': items.debugMode,
+            'opt-hotkeysEnabled': items.hotkeysEnabled
         };
 
         Object.keys(checkboxMap).forEach(id => {
@@ -54,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'opt-autoSelect': 'autoSelect',
         'opt-fuzzyMatch': 'fuzzyMatch',
         'opt-enabled': 'enabled',
-        'opt-debugMode': 'debugMode'
+        'opt-debugMode': 'debugMode',
+        'opt-hotkeysEnabled': 'hotkeysEnabled'
     };
 
     Object.keys(mapIdToKey).forEach(id => {

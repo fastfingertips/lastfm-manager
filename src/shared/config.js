@@ -10,7 +10,8 @@ const LfmConfig = {
         confirmDelete: 'text', // 'none', 'simple', 'text' (require DELETE)
         enabled: true,        // Global extension toggle
         badgeMode: 'both',    // 'both', 'icon_only', 'none'
-        debugMode: false      // Detailed console logs
+        debugMode: false,     // Detailed console logs
+        hotkeysEnabled: true  // Master toggle for keyboard shortcuts
     },
 
     PRESET_TOLERANCES: [60, 300, 1800, 3600, 86400],
